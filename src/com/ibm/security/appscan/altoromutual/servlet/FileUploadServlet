@@ -1,0 +1,49 @@
+package com.ibm.security.appscan.altoromutual.servlet;
+// Author: Group 5
+
+// Utilizes Apache Commons, please make sure you refresh your gradle project to utilize the imports or this will NOT work.
+import java.io.*;
+import java.util.List;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+public class FileUploadServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L; //These were in all the servlets, dont know why.
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+        if (ServletFileUpload.isMultipartContent(request)) { //Is the request hitting this backend logic an upload? In the case someone hits upload without a file.
+            DiskFileItemFactory factory = new DiskFileItemFactory(); //Make a DiskFileItemFactory to handle File Requests
+            ServletFileUpload upload = new ServletFileUpload(factory); //ServletFileUpload Object handles the transportation of file requests, utilizing factory.
+            //Find a way to make Upload Path to be able to be used globally
+            String uploadPath = "D:\\CHOPS Altoro\\AltoroJ-AltoroJ-3.2\\WebContent\\images"; // Set Upload Path here for your PERSONAL DEVICE
+            File uploadDir = new File(uploadPath); //This sets the directory of where files will go.
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs(); // This will create a folder following the above path if it doesnt exist within the app if configured carefully and correctly.
+            }
+            // Can you find a way to add a ZIP File unzipping feature to this?
+            try {
+                List<FileItem> formItems = upload.parseRequest(request); // Make a new list to parse upload/uploads (In case someone uploads a folder)
+                for (FileItem item : formItems) { //For each FileItem within the list
+                    if (!item.isFormField()) { //If the item is NOT just a fill in Form aka a File
+                        String fileName = new File(item.getName()).getName(); //Get the files Name
+                        File storeFile = new File(uploadPath, fileName); //Get the file
+
+                        item.write(storeFile); // Save the file to directory
+
+                        response.getWriter().print("File uploaded successfully."); //Tell the user the result
+                        return; // Once uploaded, exit via return
+                    }
+                }
+            } 
+            catch (Exception e) {
+                response.getWriter().print("File upload failed.");
+            }
+        } 
+        else { //If user put nothing in upload and processed, tell them.
+            response.getWriter().print("Invalid request.");
+        }
+    }
+}
