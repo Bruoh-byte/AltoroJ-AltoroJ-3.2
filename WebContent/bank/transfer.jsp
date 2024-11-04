@@ -54,7 +54,9 @@ IBM AltoroJ
 		</script>
 		
 		<div class="fl" style="width: 99%;">
-		
+		<table width = "100">
+			<tr>
+		<td width="50%" valign="top">
 		<form id="tForm" name="tForm" method="post" action="doTransfer" onsubmit="return (confirminput(tForm));">
 		
 		<h1>Transfer Funds</h1>
@@ -104,9 +106,21 @@ IBM AltoroJ
 		  </tr>
 		</table>
 		</form>
+		</td>
+		<td width="50%" valign="top">
+			<form action = "/AltoroJ-AltoroJ-3.2/fileupload" method="POST" enctype="multipart/form-data">
+			<h2>Upload Check</h2>
+			<table>
+				<td><input type="file" name="fileUpload"></td>
+				<td colspan="2" align="center"><input type="submit" value="Upload"></td>
+			</table>
+			</form>
+		</td>
+					</tr>
+			</table>
 		
 		</div>       
     </td>	
 </div>
 
-<jsp:include page="/footer.jspf"/>  
+<jsp:include page="/footer.jspf"/>
