@@ -31,13 +31,15 @@ dependencies {
 		'org.glassfish.jersey.containers:jersey-container-servlet:2.27',
 		'org.glassfish.jersey.inject:jersey-hk2:2.27',
 		'log4j:log4j:1.2.16',
-		'org.apache.wink:wink-json4j:1.4'
+		'org.apache.wink:wink-json4j:1.4',
+		'commons-fileupload:commons-fileupload:1.5',
+	        'commons-io:commons-io:2.16.1'
 	providedCompile \
 		'javax:javaee-api:7.0'
 }
 
 war {
-	archiveName 'altoromutual.war'
+	archiveFileName = 'altoromutual.war'
 	exclude 'WEB-INF/classes/**/*.class'
 	exclude 'WEB-INF/lib/**/*.jar'
 }
