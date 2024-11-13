@@ -4,26 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<%
-/**
- This application is for demonstration use only. It contains known application security
-vulnerabilities that were created expressly for demonstrating the functionality of
-application security testing tools. These vulnerabilities may present risks to the
-technical environment in which the application is installed. You must delete and
-uninstall this demonstration application upon completion of the demonstration for
-which it is intended. 
-
-IBM DISCLAIMS ALL LIABILITY OF ANY KIND RESULTING FROM YOUR USE OF THE APPLICATION
-OR YOUR FAILURE TO DELETE THE APPLICATION FROM YOUR ENVIRONMENT UPON COMPLETION OF
-A DEMONSTRATION. IT IS YOUR RESPONSIBILITY TO DETERMINE IF THE PROGRAM IS APPROPRIATE
-OR SAFE FOR YOUR TECHNICAL ENVIRONMENT. NEVER INSTALL THE APPLICATION IN A PRODUCTION
-ENVIRONMENT. YOU ACKNOWLEDGE AND ACCEPT ALL RISKS ASSOCIATED WITH THE USE OF THE APPLICATION.
-
-IBM AltoroJ
-(c) Copyright IBM Corp. 2008, 2013 All Rights Reserved.
-*/
-%> 
-    
+   
 <jsp:include page="/header.jspf"/>
 
 <div id="wrapper" style="width: 99%;">
@@ -36,17 +17,17 @@ IBM AltoroJ
 		<div class="fl" style="width: 99%;">
 		
 	 	<%
-			 		com.ibm.security.appscan.altoromutual.model.User user = (com.ibm.security.appscan.altoromutual.model.User)request.getSession().getAttribute("user");
-			 			String startString = request.getParameter("startTime");
-			 			String endString = request.getParameter("endTime");
+		com.ibm.security.appscan.altoromutual.model.User user = (com.ibm.security.appscan.altoromutual.model.User)request.getSession().getAttribute("user");
+		String startString = request.getParameter("startTime");
+		String endString = request.getParameter("endTime");
 
-			 			String error = "";
+		String error = "";
 			 			
-			 			Transaction[] transactions = new Transaction[0];
+		Transaction[] transactions = new Transaction[0];
 			 			
-			 			transactions = user.getUserTransactions(startString, endString, user.getAccounts());
+		transactions = user.getUserTransactions(startString, endString, user.getAccounts());
 
-			 	%>
+		%>
 		
 		<h1>Recent Transactions</h1>
 		
@@ -152,11 +133,71 @@ IBM AltoroJ
 			</tr>
 		</table>
 		
+		
+		<canvas id="myChart" width="450" height="100"></canvas> <!-- Nicole added -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
+		
+		<!-- 		Makes array for data - thus reading data from database -->
+		<% 
+		String[] dateDataForChart = new String[transactions.length]; //make the array to hold date of each transaction
+		String[] amountDataForChart = new String[transactions.length]; //make the array to hold amount of each transaction
+				
+		for (int i=0; i<transactions.length; i++){
+				//limit to 100 entries
+				if (i==100)
+					break;
+				
+				double dblAmt = transactions[i].getAmount();
+				String format = (dblAmt<1)?"$0.00":"$.00";
+				String amount = new DecimalFormat(format).format(dblAmt);
+				String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(transactions[i].getDate());
+				
+				dateDataForChart[i] = date;
+				amountDataForChart[i] = amount;	
+				
+				/* System.out.println(dateDataForChart[i]);
+				System.out.println(chartDataForChart[i]); */
+		}			
+		%>
+			
+		<script> <!-- Nicole added -->
+		document.addEventListener('DOMContentLoaded', function() {
+		    const ctx = document.getElementById('myChart').getContext('2d');
+		    const myChart = new Chart(ctx, {
+		        type: 'line',
+		        data: {
+		            labels: ['3/19/17', '3/19/17', '3/19/18', '3/19/18', '3/19/18', '3/19/18', '3/7/19', '3/7/19', '3/8/19', '3/11/19'],
+		            datasets: [{
+		                label: 'Overview of all Withdraw/Deposit Activity',
+		                data: [-100.72, 100.72, -1100, 1100, -600.88, 600.88, -400, 400, -100, 100, -400, 400],
+		                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+		                borderColor: 'rgba(255, 99, 132, 1)',
+		                borderWidth: 1,
+		                fill: false
+		            }]
+		        },
+		        options: {
+		            scales: {
+		                y: {
+		                    beginAtZero: true
+		                }
+		            }
+		        }
+		    });
+		});
+		</script>
+		
 		</form>
 		
 		</div>    
     
     </td>	
 </div>
+
+<div> 
+
+
+</div>
+
 
 <jsp:include page="/footer.jspf"/>  
