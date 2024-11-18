@@ -133,59 +133,41 @@
 			</tr>
 		</table>
 		
-		
-		<canvas id="myChart" width="450" height="100"></canvas> <!-- Nicole added -->
-		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
-		
-		<!-- 		Makes array for data - thus reading data from database -->
-		<% 
-		String[] dateDataForChart = new String[transactions.length]; //make the array to hold date of each transaction
-		String[] amountDataForChart = new String[transactions.length]; //make the array to hold amount of each transaction
-				
-		for (int i=0; i<transactions.length; i++){
-				//limit to 100 entries
-				if (i==100)
-					break;
-				
-				double dblAmt = transactions[i].getAmount();
-				String format = (dblAmt<1)?"$0.00":"$.00";
-				String amount = new DecimalFormat(format).format(dblAmt);
-				String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(transactions[i].getDate());
-				
-				dateDataForChart[i] = date;
-				amountDataForChart[i] = amount;	
-				
-				/* System.out.println(dateDataForChart[i]);
-				System.out.println(chartDataForChart[i]); */
-		}			
-		%>
-			
-		<script> <!-- Nicole added -->
-		document.addEventListener('DOMContentLoaded', function() {
-		    const ctx = document.getElementById('myChart').getContext('2d');
-		    const myChart = new Chart(ctx, {
-		        type: 'line',
-		        data: {
-		            labels: ['3/19/17', '3/19/17', '3/19/18', '3/19/18', '3/19/18', '3/19/18', '3/7/19', '3/7/19', '3/8/19', '3/11/19'],
-		            datasets: [{
-		                label: 'Overview of all Withdraw/Deposit Activity',
-		                data: [-100.72, 100.72, -1100, 1100, -600.88, 600.88, -400, 400, -100, 100, -400, 400],
-		                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-		                borderColor: 'rgba(255, 99, 132, 1)',
-		                borderWidth: 1,
-		                fill: false
-		            }]
-		        },
-		        options: {
-		            scales: {
-		                y: {
-		                    beginAtZero: true
+		    <canvas id="myChart" width="450" height="100"></canvas>
+		    
+		    <!-- Reference to Local Chart.js library -->
+		    <!-- <script src="C:\Users\nicol\git\AltoroJ\chartJsLibrary\Chart.js"></script> -->
+		    <script src="chartJsLibrary/Chart.js"></script>		
+		    <!-- Chart Details script -->
+		    <script>
+		        // Ensure the DOM is fully loaded before running the script
+		        document.addEventListener('DOMContentLoaded', function() {
+		            var ctx = document.getElementById('myChart').getContext('2d');
+		            var myChart = new Chart(ctx, {
+		                type: 'line',
+		                data: {
+		                    labels: ['3/19/17', '3/19/17', '3/19/18', '3/19/18', '3/19/18', '3/19/18', '3/7/19', '3/7/19', '3/8/19', '3/11/19'],
+		                    datasets: [{
+		                        label: 'Overview of all Withdraw/Deposit Activity',
+		                        data: [-100.72, 100.72, -1100, 1100, -600.88, 600.88, -400, 400, -100, 100, -400, 400],
+		                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+		                        borderColor: 'rgba(255, 99, 132, 1)',
+		                        borderWidth: 1,
+		                        fill: false
+		                    }]
+		                },
+		                options: {
+		                    scales: {
+		                        yAxes: [{
+		                            ticks: {
+		                                beginAtZero: true
+		                            }
+		                        }]
+		                    }
 		                }
-		            }
-		        }
-		    });
-		});
-		</script>
+		            });
+		        });
+		    </script>
 		
 		</form>
 		
