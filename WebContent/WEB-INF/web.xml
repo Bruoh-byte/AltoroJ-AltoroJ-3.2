@@ -129,15 +129,6 @@
     <servlet-class>
 		com.ibm.security.appscan.altoromutual.servlet.FeedbackServlet</servlet-class>
   </servlet>
-    <servlet>
-    <description>
-		</description>
-    <display-name>
-		FileUploadServlet</display-name>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <servlet-class>
-		com.ibm.security.appscan.altoromutual.servlet.FileUploadServlet</servlet-class>
-  </servlet>
   <servlet>
     <description>
 		</description>
@@ -204,10 +195,6 @@
   <servlet-mapping>
     <servlet-name>FeedbackServlet</servlet-name>
     <url-pattern>/sendFeedback</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/fileupload</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AdminServlet</servlet-name>
