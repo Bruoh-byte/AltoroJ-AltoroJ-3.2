@@ -133,41 +133,59 @@
 			</tr>
 		</table>
 		
-		    <canvas id="myChart" width="450" height="100"></canvas>
+			<!-- CapStone Project Changes Below -->
+			
+		    <canvas id="myChart" width="450" height="100"></canvas> <!-- creates canvas element called myChart -->
 		    
-		    <!-- Reference to Local Chart.js library -->
-		    <!-- <script src="C:\Users\nicol\git\AltoroJ\chartJsLibrary\Chart.js"></script> -->
-		    <script src="chartJsLibrary/Chart.js"></script>		
-		    <!-- Chart Details script -->
-		    <script>
-		        // Ensure the DOM is fully loaded before running the script
-		        document.addEventListener('DOMContentLoaded', function() {
-		            var ctx = document.getElementById('myChart').getContext('2d');
-		            var myChart = new Chart(ctx, {
-		                type: 'line',
-		                data: {
-		                    labels: ['3/19/17', '3/19/17', '3/19/18', '3/19/18', '3/19/18', '3/19/18', '3/7/19', '3/7/19', '3/8/19', '3/11/19'],
-		                    datasets: [{
-		                        label: 'Overview of all Withdraw/Deposit Activity',
-		                        data: [-100.72, 100.72, -1100, 1100, -600.88, 600.88, -400, 400, -100, 100, -400, 400],
-		                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-		                        borderColor: 'rgba(255, 99, 132, 1)',
-		                        borderWidth: 1,
-		                        fill: false
-		                    }]
-		                },
-		                options: {
-		                    scales: {
-		                        yAxes: [{
-		                            ticks: {
-		                                beginAtZero: true
-		                            }
-		                        }]
-		                    }
-		                }
-		            });
-		        });
-		    </script>
+ 			<!-- Reference to Local Chart.js library below
+		    *Pay Attention:
+		    If you are testing for the vulnerability, you must use the insecure library called Chart.js
+		    If you are testing for secureness, you must use the secure library called chart.umd.js
+		    Which ever one you are testing for, comment the other script line out here AND comment out that file in the directory-->
+
+			<!-- This uses the vulnerable library -->
+		    <!-- <script src="chartJSLibrary/Chart(1).js"></script> -->	
+		    
+		    <!-- This uses modern, secure library  -->
+		    <script type="module" src="chartJSLibrary_Secure/chart.umd.js"></script>
+		    
+		    <!-- Which ever one you are testing for, comment the other script line out above AND comment out that file in the directory -->
+		    
+		    <!-- Chart Details script: provides specific data about the chart -->
+			<script>
+			    document.addEventListener('DOMContentLoaded', function() { // Ensure the DOM is fully loaded before running the script
+			    	 var ctx = document.getElementById('myChart').getContext('2d'); //gets the chart context
+			         var myChart = new Chart(ctx, { //puts the chart data into the variable
+			            type: 'line', //type of chart
+			            data: { //data going into chart
+			                labels: ['3/19/17', '3/19/17', '3/19/18', '3/19/18', '3/19/18', '3/19/18', '3/7/19', '3/7/19', '3/8/19', '3/11/19'], //x-axis data
+			                datasets: [{
+			                    label: 'Overview of all Withdraw/Deposit Activity', //chart title
+			                    data: [-100.72, 100.72, -1100, 1100, -600.88, 600.88, -400, 400, -100, 100, -400, 400], //y-axis data
+			                    backgroundColor: 'rgba(153, 172, 174, .3)', //chart background color
+			                    borderColor: 'rgba(191, 215, 218, 1)', //chart border color
+			                    borderWidth: 3, //chart border width
+			                    fill: true //chart has fill
+			                }]
+			            },
+			            options: {
+			                scales: {
+			                    y: { 
+			                        ticks: {
+			                            beginAtZero: true
+			                        }
+			                    },
+			                    x: { 
+			                        grid: {
+			                            color: 'green'
+			                        }
+			                    }
+			                }
+			            }
+			        });
+			    }); //End of chart script
+			</script>
+			<!-- CapStone Project Code Changes Finished for this file -->
 		
 		</form>
 		
