@@ -1,8 +1,9 @@
 Description
 ------------------------------------------------------------------------------------------------------------------------------------
-WARNING: The implementation of the openSrcLibrary chart feature comes with introduces vulnerabilies into the web app..
+WARNING: The implementation of the openSrcLibrary chart feature comes with introduces vulnerabilies into the web app.
 Practice this vulnerability with caution in a controlled environment. This vulnerability demonstrates the risks associated with 
 implementing unsecure open source libraries. There are lines of solution code to remedy these.
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Changes within AltoroJ-AltoroJ-3.2
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -23,10 +24,12 @@ Configuration
 Depending on the name of your folders in the WebContent/bank folder, you may have to alter the transaction.jsp file
 The line holding: <script src="chartJSLibrary/Chart(1).js"></script> AND the line holding: <script type="module" src="chartJSLibrary_Secure/chart.umd.js"></script>
 will need to have the src path following the correct, relative path to these library files.
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Practice
 ------------------------------------------------------------------------------------------------------------------------------------
 When practicing this code, the code will change the transaction web page. It will now show a chart to provide a better end user experience for them using the web app.
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Test Cases with Solution Code uncommented
 ------------------------------------------------------------------------------------------------------------------------------------
