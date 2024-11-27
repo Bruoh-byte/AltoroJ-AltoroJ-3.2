@@ -83,6 +83,10 @@ public class FileUploadServlet extends HttpServlet {
             byte[] buffer = new byte[1024]; // This buffer array handles all the bytes that come through when reading files, cause again, files are transfered via 1s and 0s, make this bigger if you have good performance
             while ((entry = zis.getNextEntry()) != null) { // Retrieve the next available file or directory in the zip file
                 File newFile = new File(uploadPath, entry.getName()); //Upload path + / + file name using the 2nd File Constructor utilizing just a string
+                String entryName = entry.getName();
+                if (!(entryName.endsWith(".png") || entryName.endsWith(".jpg"))) { // Check that an entry is a JPG or PNG, if it isnt, skip it SOLUTION
+              	continue; // Skip it, go to the next entry SOLUTION
+                 } // SOLUTION
                 String whereIsFileGoing = newFile.getCanonicalPath(); // Get a string idea of the given file path SOLUTION
                 String whereShouldFileBe = trueUploadPath.getCanonicalPath(); // Get where the path of where the file should go SOLUTION
                 if (!whereIsFileGoing.startsWith(whereShouldFileBe + File.separator)) { //This will check that the path it will end up is where it belongs, and not outside directory SOLUTION
