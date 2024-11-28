@@ -4,26 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<%
-/**
- This application is for demonstration use only. It contains known application security
-vulnerabilities that were created expressly for demonstrating the functionality of
-application security testing tools. These vulnerabilities may present risks to the
-technical environment in which the application is installed. You must delete and
-uninstall this demonstration application upon completion of the demonstration for
-which it is intended. 
-
-IBM DISCLAIMS ALL LIABILITY OF ANY KIND RESULTING FROM YOUR USE OF THE APPLICATION
-OR YOUR FAILURE TO DELETE THE APPLICATION FROM YOUR ENVIRONMENT UPON COMPLETION OF
-A DEMONSTRATION. IT IS YOUR RESPONSIBILITY TO DETERMINE IF THE PROGRAM IS APPROPRIATE
-OR SAFE FOR YOUR TECHNICAL ENVIRONMENT. NEVER INSTALL THE APPLICATION IN A PRODUCTION
-ENVIRONMENT. YOU ACKNOWLEDGE AND ACCEPT ALL RISKS ASSOCIATED WITH THE USE OF THE APPLICATION.
-
-IBM AltoroJ
-(c) Copyright IBM Corp. 2008, 2013 All Rights Reserved.
-*/
-%> 
-    
+   
 <jsp:include page="/header.jspf"/>
 
 <div id="wrapper" style="width: 99%;">
@@ -36,17 +17,17 @@ IBM AltoroJ
 		<div class="fl" style="width: 99%;">
 		
 	 	<%
-			 		com.ibm.security.appscan.altoromutual.model.User user = (com.ibm.security.appscan.altoromutual.model.User)request.getSession().getAttribute("user");
-			 			String startString = request.getParameter("startTime");
-			 			String endString = request.getParameter("endTime");
+		com.ibm.security.appscan.altoromutual.model.User user = (com.ibm.security.appscan.altoromutual.model.User)request.getSession().getAttribute("user");
+		String startString = request.getParameter("startTime");
+		String endString = request.getParameter("endTime");
 
-			 			String error = "";
+		String error = "";
 			 			
-			 			Transaction[] transactions = new Transaction[0];
+		Transaction[] transactions = new Transaction[0];
 			 			
-			 			transactions = user.getUserTransactions(startString, endString, user.getAccounts());
+		transactions = user.getUserTransactions(startString, endString, user.getAccounts());
 
-			 	%>
+		%>
 		
 		<h1>Recent Transactions</h1>
 		
@@ -152,11 +133,71 @@ IBM AltoroJ
 			</tr>
 		</table>
 		
+			<!-- CapStone Project Changes Below -->
+			
+		    <canvas id="myChart" width="450" height="100"></canvas> <!-- creates canvas element called myChart -->
+		    
+ 			<!-- Reference to Local Chart.js library below
+		    *Pay Attention:
+		    If you are testing for the vulnerability, you must use the insecure library called Chart.js
+		    If you are testing for secureness, you must use the secure library called chart.umd.js
+		    Which ever one you are testing for, comment the other script line out here AND comment out that file in the directory-->
+
+			<!-- This uses the vulnerable library -->
+		    <!-- <script src="chartJSLibrary/Chart(1).js"></script> -->	
+		    
+		    <!-- This uses modern, secure library  -->
+		    <script type="module" src="chartJSLibrary_Secure/chart.umd.js"></script>
+		    
+		    <!-- Which ever one you are testing for, comment the other script line out above AND comment out that file in the directory -->
+		    
+		    <!-- Chart Details script: provides specific data about the chart -->
+			<script>
+			    document.addEventListener('DOMContentLoaded', function() { // Ensure the DOM is fully loaded before running the script
+			    	 var ctx = document.getElementById('myChart').getContext('2d'); //gets the chart context
+			         var myChart = new Chart(ctx, { //puts the chart data into the variable
+			            type: 'line', //type of chart
+			            data: { //data going into chart
+			                labels: ['3/19/17', '3/19/17', '3/19/18', '3/19/18', '3/19/18', '3/19/18', '3/7/19', '3/7/19', '3/8/19', '3/11/19'], //x-axis data
+			                datasets: [{
+			                    label: 'Overview of all Withdraw/Deposit Activity', //chart title
+			                    data: [-100.72, 100.72, -1100, 1100, -600.88, 600.88, -400, 400, -100, 100, -400, 400], //y-axis data
+			                    backgroundColor: 'rgba(153, 172, 174, .3)', //chart background color
+			                    borderColor: 'rgba(191, 215, 218, 1)', //chart border color
+			                    borderWidth: 3, //chart border width
+			                    fill: true //chart has fill
+			                }]
+			            },
+			            options: {
+			                scales: {
+			                    y: { 
+			                        ticks: {
+			                            beginAtZero: true
+			                        }
+			                    },
+			                    x: { 
+			                        grid: {
+			                            color: 'green'
+			                        }
+			                    }
+			                }
+			            }
+			        });
+			    }); //End of chart script
+			</script>
+			<!-- CapStone Project Code Changes Finished for this file -->
+		
 		</form>
 		
 		</div>    
     
     </td>	
 </div>
+
+<div> 
+
+
+</div>
+
 
 <jsp:include page="/footer.jspf"/>  
