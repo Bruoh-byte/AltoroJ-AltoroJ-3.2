@@ -1,5 +1,12 @@
 package com.ibm.security.appscan.altoromutual.servlet;
-//Author: Group 5
+//Author: Group 5 Cohort 7
+
+/* The following Servlet utilizes Apache Commons FileUpload v 1.5 and IO v 2.16.1 authorized under
+ *Apache Commons License 2.0 for personal use, found at :https://www.apache.org/licenses/LICENSE-2.0.txt
+ *
+ *Apache FileUpload: https://commons.apache.org/proper/commons-fileupload/
+ *Apache IO: https://commons.apache.org/proper/commons-io/
+ */
 
 //Utilizes Apache Commons, please make sure you refresh your gradle project to utilize the imports or this will NOT work.
 import java.io.*;
