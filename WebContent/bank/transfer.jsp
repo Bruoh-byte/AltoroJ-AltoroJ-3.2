@@ -108,7 +108,7 @@ IBM AltoroJ
 		</form>
 		</td>
 		<td width="50%" valign="top">
-			<form action = "/AltoroJ-AltoroJ-3.2/fileupload-main" method="POST" enctype="multipart/form-data">
+			<form action = "/AltoroJ-AltoroJ-3.2-main/fileupload" method="POST" enctype="multipart/form-data">
 			<h2>Upload Check</h2>
 			<table>
 				<td><input type="file" name="fileUpload"></td>
