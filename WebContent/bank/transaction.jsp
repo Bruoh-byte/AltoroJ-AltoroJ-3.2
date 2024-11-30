@@ -144,7 +144,7 @@
 		    Which ever one you are testing for, comment the other script line out here AND comment out that file in the directory-->
 
 			<!-- This uses the vulnerable library -->
-		    <!-- <script src="chartJSLibrary/Chart(1).js"></script> -->	
+		    <!-- <script src="chartJsLibrary/Chart.js"></script> -->	
 		    
 		    <!-- This uses modern, secure library  -->
 		    <script type="module" src="chartJSLibrary_Secure/chart.umd.js"></script>
@@ -185,7 +185,7 @@
 			        });
 			    }); //End of chart script
 			</script>
-			<!-- CapStone Project Code Changes Finished for this file -->
+			<!-- CapStone Project Changes Finished -->
 		
 		</form>
 		
