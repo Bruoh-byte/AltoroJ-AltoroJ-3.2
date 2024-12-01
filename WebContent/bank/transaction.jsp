@@ -150,8 +150,9 @@
 				2: verify the insecure library scr script is commented out so it will not be used on line 158
 				3: (this is only necessary if running the hcl app scan) comment out the Chart.js in the relative 
 				path in src script file on line 158 because we are testing the secure version because in a 
-				real-world situation the vulnerability would be completely removed and deleted. We have left 
-				both versions so everyone can see the differences
+				real-world situation the vulnerability would be completely removed and deleted (in this case, 
+				the insecure library would be deleted from the project, to replicate this, we ask you comment it out
+				when performing the hcl app scan). We have left both versions so everyone can see the differences
 		    Notice: The files are downloaded to demonstrate the insecure version first. If you want to test for secureness, you
 		    have to make the changes, listed above, to test for secureness-->
 
