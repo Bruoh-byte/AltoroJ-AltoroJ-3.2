@@ -155,10 +155,10 @@
 		    have to make the changes, listed above, to test for secureness-->
 
 		    <!-- This uses the vulnerable library -->
-		    <!-- <script src="chartJSLibrary/Chart.js"></script> -->	
+		    <script src="chartJSLibrary/Chart.js"></script>	
 		    
 		    <!-- This uses modern, secure library  -->
-		    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 		    
 		    <!-- Chart Details script: provides specific data about the chart -->
 			<script>
