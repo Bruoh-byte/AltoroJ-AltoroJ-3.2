@@ -146,7 +146,7 @@
 		    	see the differences-->
 
 			<!-- This uses the vulnerable library -->
-		    <!-- <script src="chartJsLibrary/Chart.js"></script> -->	
+		    <!-- <script src="chartJSLibrary/Chart.js"></script> -->	
 		    
 		    <!-- This uses modern, secure library  -->
 		    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
