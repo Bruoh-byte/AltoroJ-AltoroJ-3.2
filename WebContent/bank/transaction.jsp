@@ -141,13 +141,13 @@
 		    *Pay Attention:
 		    If you are TESTING FOR THE VULNERABILITY, you must use the insecure library called Chart.js
 			Actions to Take:
-				1: verify you are using the insecure library src script on line 156
-				2: verify the secure library src script is commented out so it will not be used on line 159
+				1: verify you are using the insecure library src script on line 158
+				2: verify the secure library src script is commented out so it will not be used on line 161
 				3: verify the Chart.js file in the relative path is uncommented
 		    If you are TESTING FOR SECURENESS, you must use the secure library reached through the cdn
 			Actions to Take:
-				1: verify you are using the secure library src script on line 159
-				2: verify the insecure library scr script is commented out so it will not be used on line 156
+				1: verify you are using the secure library src script on line 161
+				2: verify the insecure library scr script is commented out so it will not be used on line 158
 				3: (this is only necessary if running the hcl app scan) comment out the Chart.js file because we are testing 
 				the secure version because in a real-world situation the vulnerability would be completely removed and deleted. 
 				We have left both versions so everyone can see the differences
