@@ -139,19 +139,24 @@
 		    
  			<!-- Reference to Local Chart.js library below
 		    *Pay Attention:
-		    If you are testing for the vulnerability, you must use the insecure library called Chart.js
-		    If you are testing for secureness, you must use the secure library reached through the cdn
-		    	Also, comment out the Chart.js file if testing for secureness because in a real-world situation
-		    	the vulnerability would be completely removed and deleted. We have left both versions so everyone can
-		    	see the differences-->
+		    If you are TESTING FOR THE VULNERABILITY, you must use the insecure library called Chart.js
+			Actions to Take:
+				1: verify you are using the insecure library src script on line 156
+				2: verify the secure library src script is commented out so it will not be used on line 159
+				3: verify the Chart.js file in the relative path is uncommented
+		    If you are TESTING FOR SECURENESS, you must use the secure library reached through the cdn
+			Actions to Take:
+				1: verify you are using the secure library src script on line 159
+				2: verify the insecure library scr script is commented out so it will not be used on line 156
+				3: (this is only necessary if running the hcl app scan) comment out the Chart.js file because we are testing 
+				the secure version because in a real-world situation the vulnerability would be completely removed and deleted. 
+				We have left both versions so everyone can see the differences-->
 
-			<!-- This uses the vulnerable library -->
+		    <!-- This uses the vulnerable library -->
 		    <!-- <script src="chartJSLibrary/Chart.js"></script> -->	
 		    
 		    <!-- This uses modern, secure library  -->
 		    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		    
-		    <!-- Which ever one you are testing for, comment the other script line out above AND comment out that file in the directory -->
 		    
 		    <!-- Chart Details script: provides specific data about the chart -->
 			<script>
