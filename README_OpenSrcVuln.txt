@@ -17,18 +17,19 @@ In WebContent/bank/chartJSLibrary/Chart.js, we see the vulnerable chart js libra
 this library introduces in a 9.8 critical vulnerably. 
 In WebContent/bank/transactions.jsp, we see the most up-to-date chart js library that can also be used. This library doesn't have
 known vulnerabilities and is secure. We can guarantee this library will remain up to date because we are reaching out to a CDN that 
-will continue to point to the most up-to-date and most secure version of chart js
+will continue to point to the most up-to-date and most secure version of chart js.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Configuration
 ------------------------------------------------------------------------------------------------------------------------------------
 Depending on the name of your folders in the WebContent/bank folder, you may have to alter the transaction.jsp file
 The line holding: <script src="chartJSLibrary/Chart(1).js"></script> will need to have the src path following the correct, relative path to these library files.
+Note: the web app user does need to be logged in as the JSMITH user to render the chart because it uses the table's data values
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Practice
 ------------------------------------------------------------------------------------------------------------------------------------
-When practicing this code, the code will change the transaction web page. It will now show a chart to provide a better end user experience for them using the web app.
+When practicing this code, the code will change the transaction web page. It will now show a chart for the JSMITH user to provide a better end user experience for them using the web app. 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Test Cases with Solution Code uncommented
